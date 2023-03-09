@@ -93,13 +93,3 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(divObservada);
   }
 });
-
-/* Envia uma requisição quando o usuário clica no botão de voltar ou fechar o navegador */
-function handleBeforeUnload(event) {
-  window.addEventListener("beforeunload", handleBeforeUnload);
-  putClosePage();
-}
-
-window.addEventListener("unload", function() {
-  window.removeEventListener("beforeunload", handleBeforeUnload);
-});
