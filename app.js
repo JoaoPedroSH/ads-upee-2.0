@@ -32,21 +32,6 @@ const postAdsVisualized = async () => {
   console.log(json);
 };
 
-const putClosePage = async () => {
-  const response = await fetch(`http://localhost:3300/test`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: 0,
-      cod: 2,
-    }),
-  });
-  const json = await response.json();
-  console.log(json);
-};
-
 const screenDimensions = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -70,11 +55,11 @@ const observerDiv = () => {
             let segundos = 0;
             const contador = setInterval(() => {
               segundos++;
-              if (segundos >= 5) {
+              if (segundos >= 20) {
                 clearInterval(contador);
-                if (entry.intersectionRatio >= 0.5) {
+                if (entry.intersectionRatio >= 0.20) {
                   console.log(
-                    "Div visualizada por 5 segundos. Fazendo a requisição..."
+                    "Div visualizada por 20 segundos. Fazendo a requisição..."
                   );
                   postAdsVisualized();
                   visualized = true;
@@ -98,3 +83,4 @@ screenDimensions();
 observerDiv();
 /* Realiza requisições de tempos em tempos */
 setInterval(postInterval, 6000);
+
