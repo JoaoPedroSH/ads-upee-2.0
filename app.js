@@ -62,7 +62,7 @@ console.log(`A altura da tela é: ${screenHeight}`);
 
 /* Observa se o usuário está visualizando uma div especifica de forma completa e se permanecer por 5 segundos, é enviada uma requisição */
 document.addEventListener("DOMContentLoaded", () => {
-  const divObservada = document.querySelector("#div-observada");
+  const divObservada = document.querySelector("#upeeads__html");
   const options = {
     root: null,
     rootMargin: "0px",
