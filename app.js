@@ -1,9 +1,7 @@
 const getAds = async () => {
   const response = await fetch("http://localhost:3300/html");
   const json = await response.json();
-  console.log(json);
-  const htmlDiv = document.getElementById("upeeads__html");
-  htmlDiv.innerHTML = json.html;
+  inputDataAd(json);
 };
 
 const postInterval = async () => {
@@ -41,7 +39,7 @@ const screenDimensions = () => {
 
 const observerDiv = () => {
   document.addEventListener("DOMContentLoaded", () => {
-    const divObservada = document.querySelector("#upeeads__html");
+    const divObservada = document.querySelector(".upeeads__ad");
     const options = {
       root: null,
       rootMargin: "0px",
@@ -57,7 +55,7 @@ const observerDiv = () => {
               segundos++;
               if (segundos >= 20) {
                 clearInterval(contador);
-                if (entry.intersectionRatio >= 0.20) {
+                if (entry.intersectionRatio >= 0.2) {
                   console.log(
                     "Div visualizada por 20 segundos. Fazendo a requisição..."
                   );
@@ -74,6 +72,11 @@ const observerDiv = () => {
   });
 };
 
+const inputDataAd = (data) => {
+  const AD = document.getElementsByClassName("upeeads__ad");
+  AD[0].innerHTML = data.html;
+
+};
 
 /* Requisição que pega o html retornado e adiciona na div especificada */
 getAds();
@@ -83,4 +86,3 @@ screenDimensions();
 observerDiv();
 /* Realiza requisições de tempos em tempos */
 setInterval(postInterval, 6000);
-
