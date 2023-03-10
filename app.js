@@ -55,7 +55,7 @@ const observerDiv = () => {
               segundos++;
               if (segundos >= 20) {
                 clearInterval(contador);
-                if (entry.intersectionRatio >= 0.2) {
+                if (entry.intersectionRatio >= 1) {
                   console.log(
                     "Div visualizada por 20 segundos. Fazendo a requisição..."
                   );
