@@ -1,9 +1,15 @@
+const DIVADS = document.querySelector(".upeeads__ad");
+
 const getAds = async () => {
   const response = await fetch("http://localhost:3300/html");
   const json = await response.json();
   inputDataAd(json);
 };
-
+const getCountClick = async () => {
+  const response = await fetch("http://localhost:3300/html");
+  const json = await response.json();
+  console.log(json);
+};
 const postInterval = async () => {
   const data = { cod: 0 };
   const response = await fetch("http://localhost:3300/test", {
@@ -16,7 +22,6 @@ const postInterval = async () => {
   const json = await response.json();
   console.log(json);
 };
-
 const postAdsVisualized = async () => {
   const data = { cod: 1 };
   const response = await fetch("http://localhost:3300/test", {
@@ -29,14 +34,12 @@ const postAdsVisualized = async () => {
   const json = await response.json();
   console.log(json);
 };
-
 const screenDimensions = () => {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
   console.log(`A largura da tela é: ${screenWidth}`);
   console.log(`A altura da tela é: ${screenHeight}`);
 };
-
 const observerDiv = () => {
   document.addEventListener("DOMContentLoaded", () => {
     const divObservada = document.querySelector(".upeeads__ad");
@@ -71,18 +74,27 @@ const observerDiv = () => {
     }
   });
 };
-
 const inputDataAd = (data) => {
   const AD = document.getElementsByClassName("upeeads__ad");
   AD[0].innerHTML = data.html;
-
 };
+const createSlot = (slot) => {};
+
+DIVADS.setAttribute("style", "cursor:pointer;");
+
+/* Envia a requisição quando o usuario clica no componente especificado */
+DIVADS.addEventListener("click", function () {
+  getCountClick();
+});
 
 /* Requisição que pega o html retornado e adiciona na div especificada */
 getAds();
+
 /* Pega as dimensões da tela */
 screenDimensions();
+
 /* Observa se o usuário está visualizando uma div especifica de forma completa e se permanecer por 5 segundos, é enviada uma requisição */
 observerDiv();
+
 /* Realiza requisições de tempos em tempos */
 setInterval(postInterval, 6000);
